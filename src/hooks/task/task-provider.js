@@ -32,7 +32,7 @@ export const TaskProvider = (props) => {
 
     const context = {
         states,
-        addTask: (name) => {
+        addNewTask: (name) => {
             const id = idCounter + 1;
             const task = {
                 id,
@@ -75,7 +75,7 @@ export const TaskProvider = (props) => {
             setTasks([...tasks]);
         },
         getActiveTaskCount: () =>
-            tasks.filter(task => task.state === 'ready' || task.state === 'inProgress').length,
+            tasks.filter(task => task.state === 'backlog').length,
         getFinishedTaskCount: () =>
             tasks.filter(task => task.state === 'finished').length,
     }

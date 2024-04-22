@@ -14,7 +14,7 @@ export const Column = (props) => {
     const [selectedTaskId, setSelectedTaskId] = useState(undefined);
 
     const {mainContentHeight} = useLayout();
-    const {getTasksByState, getTasksByExcludedState, addTask, moveTask, removeTask } = useTasks();
+    const {getTasksByState, getTasksByExcludedState, addNewTask, moveTask, removeTask } = useTasks();
 
     const tasks = getTasksByState(props.state);
     const hasTasks = tasks.length > 0;
@@ -67,7 +67,9 @@ export const Column = (props) => {
                     <button onClick={() => {
                         if (props.state === 'backlog') {
                             setIsNewTaskInputShown(false);
-                            addTask(inputCardName);
+                            if(inputCardName !== "" && inputCardName !== undefined){
+                            addNewTask(inputCardName)
+                        };
                             setInputCardName(undefined);
                         } else {
                             setIsNewTaskSelectShown(false);
@@ -77,7 +79,7 @@ export const Column = (props) => {
                     >Submit</button>
                     }
                     {(isNewTaskInputShown || isNewTaskSelectShown)
-                    && <button onClick={() =>
+                    && <button id='btn_hide' onClick={() =>
                         props.state === 'backlog'
                             ? setIsNewTaskInputShown(false)
                             : setIsNewTaskSelectShown(false)

@@ -1,6 +1,9 @@
 .column {
     width: 282px;
     min-height: 210px;
+    &:first-child{
+        margin-left: 24px;
+    }
     .header {
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
